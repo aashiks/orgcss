@@ -1,9 +1,86 @@
 @import "normalize";
 @import "htmlize";
 
-$sans: Helvetica, sans-serif;
-$serif: Georgia, serif;
-$monospace: Lucida Console, monospace;
+@font-face {
+	font-family: 'Manjari';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 400;
+	src: url('fonts/woff2/Manjari-Regular.woff2') format('woff2');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+0D01-0D7F, U+200C-U+200D, U+25CC;
+}
+
+
+/* Manjari Bold*/
+
+@font-face {
+	font-family: 'Manjari';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 700;
+	src: url('fonts/woff2/Manjari-Bold.woff2') format('woff2');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+0D01-0D7F, U+200C-U+200D, U+25CC;
+}
+
+
+/* Manjari Thin*/
+
+@font-face {
+	font-family: 'Manjari';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 100;
+	src: url('woff2/Manjari-Thin.woff2') format('woff2');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+0D01-0D7F, U+200C-U+200D, U+25CC;
+}
+
+@font-face{
+  font-family: 'Fira Code';
+  src: url('fonts/eot/FiraCode-Light.eot');
+  src: url('fonts/eot/FiraCode-Light.eot') format('embedded-opentype'),
+       url('fonts/woff2/FiraCode-Light.woff2') format('woff2'),
+       url('fonts/woff/FiraCode-Light.woff') format('woff'),
+       url('fonts/ttf/FiraCode-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face{
+  font-family: 'Fira Code';
+  src: url('fonts/eot/FiraCode-Regular.eot');
+  src: url('fonts/eot/FiraCode-Regular.eot') format('embedded-opentype'),
+       url('fonts/woff2/FiraCode-Regular.woff2') format('woff2'),
+       url('fonts/woff/FiraCode-Regular.woff') format('woff'),
+       url('fonts/ttf/FiraCode-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face{
+  font-family: 'Fira Code';
+  src: url('fonts/eot/FiraCode-Medium.eot');
+  src: url('fonts/eot/FiraCode-Medium.eot') format('embedded-opentype'),
+       url('fonts/woff2/FiraCode-Medium.woff2') format('woff2'),
+       url('fonts/woff/FiraCode-Medium.woff') format('woff'),
+       url('fonts/ttf/FiraCode-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face{
+  font-family: 'Fira Code';
+  src: url('fonts/eot/FiraCode-Bold.eot');
+  src: url('fonts/eot/FiraCode-Bold.eot') format('embedded-opentype'),
+       url('fonts/woff2/FiraCode-Bold.woff2') format('woff2'),
+       url('fonts/woff/FiraCode-Bold.woff') format('woff'),
+       url('fonts/ttf/FiraCode-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+$sans: Fira Code, Manjari, sans-serif;
+$serif: Fira Code, Manjari, serif;
+$monospace: Fira Code, monospace;
 $code-size: 80%;
 $smaller: 90%;
 $max-width: 710px;
@@ -101,13 +178,16 @@ dl {
 }
 
 a {
-    color: #527d9a;
-    text-decoration: none;
+    color: #4294DD;
+    font-family: $serif;
+    text-decoration: underline;
 }
 
 a:hover {
     color: #003355;
-    border-bottom: 1px dotted;
+    background-color: #B6D6FD;
+    text-decoration: none;
+    font-family: $serif;
 }
 
 figure {
@@ -127,7 +207,6 @@ img {
 }
 
 h1,h2,h3,h4,h5,h6 {
-    color: #A5573E;
     line-height: 1em;
     font-family: $sans;
 }
@@ -138,6 +217,91 @@ h1,h2,h3 {
 
 h4,h5,h6 {
     font-size: 1em;
+}
+
+/** Nicked from Leuven theme **/
+
+h1 {
+    text-decoration: overline;
+    text-decoration-color: #A7A7A7;
+    color: #3C3C3C ;
+    background-color: #F0F0F0;
+    width: fit-content;
+}
+
+h1::before {
+    content: "◉ ";
+    width: fit-content;
+    text-decoration: overline;
+    text-decoration-color: #A7A7A7;
+}
+
+h2 {
+    text-decoration: overline;
+    text-decoration-color: #123555;
+    color: #123555 ;
+    background-color: #E5F4FB;
+    width: fit-content;
+}
+
+h2::before {
+    content: "➔ ";
+    width: fit-content;
+    text-decoration: overline;
+    text-decoration-color: #123555;
+}
+
+h3 {
+    color: #005522;
+    background-color: #EFFFEF;
+    width: fit-content;
+}
+
+h3::before {
+    content: "◎ ";
+    width: fit-content;
+    text-decoration-color: #005522;
+}
+
+
+h4 {
+    color: #EA6300;
+    width: fit-content;
+}
+
+h4::before {
+    content: "► ";
+    width: fit-content;
+    text-decoration-color: #EA6300;
+}
+
+h5 {
+    color: #E3258D;
+    width: fit-content;
+}
+
+h5::before {
+    content: "○ ";
+    width: fit-content;
+    text-decoration-color: #E3258D;
+}
+
+
+h6 {
+    color: #0077CC;
+    width: fit-content;
+}
+
+h6::before {
+    content: "◦ ";
+    width: fit-content;
+    text-decoration-color: #0077CC;
+}
+
+span.prop-name {
+    background-color: #EAFFEA;
+    color: #00BB04;
+    width: fit-content;
 }
 
 @media screen and (min-width: 600px) {

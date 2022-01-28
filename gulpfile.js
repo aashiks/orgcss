@@ -10,7 +10,7 @@ const $replace = require('gulp-replace');
 const del = require('del');
 const server = require('browser-sync').create();
 
-$.task('build', $.series(clean, $.parallel(pages, styles, misc)));
+$.task('build', $.series(clean, $.parallel(pages, styles, misc,fonts)));
 $.task('default', $.series('build', $.parallel(serve, watch)));
 $.task('publish', publish);
 
@@ -24,9 +24,10 @@ function reload(done) {
 }
 
 function watch() {
-  $.watch(['src/index.html', 'src/ref_bib.html'], $.series(pages, reload));
+  $.watch(['src/index.org', 'src/ref.bib'], $.series(pages, reload));
   $.watch('src/css/*.css', $.series(styles, reload));
   $.watch(['src/img/*'], $.series(misc, reload));
+  $.watch(['src/fonts/*'], $.series(fonts, reload));
 }
 
 function serve(done) {
@@ -36,7 +37,7 @@ function serve(done) {
 
 function pages() {
   const f = $filter('src/ref_bib.html', {restore: true});
-  return $.src(['src/index.html', 'src/ref_bib.html'])
+  return $.src(['src/index.org', 'src/ref.bib'])
     .pipe($changed('build'))
     .pipe($plumber())
     .pipe($htmlmin({
@@ -68,6 +69,13 @@ function misc() {
   return $.src('src/img/*')
     .pipe($changed('build'))
     .pipe($.dest('build/img/'));
+}
+
+
+function fonts() {
+  return $.src('src/fonts/**/*')
+    .pipe($changed('build'))
+    .pipe($.dest('build/fonts/'));
 }
 
 function publish() {
